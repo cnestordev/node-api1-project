@@ -1,21 +1,36 @@
 //express setup
 const express = require('express')
 const app = express()
+
+const cors = require('cors')
+
 app.use(express.json()) //body parser
+app.use(cors())
 
 const randomId = require('shortid')
 
 const port = 8000
-let users = []
+let users = [
+    {
+        id: "1",
+        name: "First Name",
+        bio: "Bio Message Here"
+    },
+    {
+        id: "2",
+        name: "Second Name",
+        bio: "Second Message Here"
+    }
+]
 
 //end points
 app.get('/', (req, res) => {
-    res.status(200).send(users)
+    res.status(200).json(users)
 })
 
 app.post('/api/users', (req, res) => {
-    if (typeof req.body.name === 'undefined' || typeof req.body.bio === 'undefined') {
-        res.status(400).send({ errorMessage: 'Please provide name and bio for user.' })
+    if (req.body.name === '' || req.body.bio === '') {
+        res.status(400).json({ message: 'Please provide name and bio for user.' })
     }
     const newUser = {
         name: req.body.name,
@@ -23,11 +38,11 @@ app.post('/api/users', (req, res) => {
         id: randomId()
     }
     users.push(newUser)
-    res.status(201).send(newUser)
+    res.status(201).json(newUser)
 })
 
 app.get('/api/users', (req, res) => {
-    res.status(200).send(users)
+    res.status(200).json(users)
 })
 
 app.get('/api/users/:id', (req, res) => {
@@ -35,44 +50,49 @@ app.get('/api/users/:id', (req, res) => {
     const result = users.find(user => user.id === id)
 
     if (result) {
-        res.status(200).send(result)
+        res.status(200).json(result)
     } else {
-        res.status(404).send({ message: 'The user with the specified ID does not exist' })
+        res.status(404).json({ message: 'The user with the specified ID does not exist' })
     }
 })
 
 //fall back error
 app.delete('/api/users/:id', (req, res) => {
+    console.log('entered delete')
     const id = req.params.id
-
+    console.log(id)
     const user = users.find(usr => usr.id === id)
-
+    console.log(user)
     if (user) {
-        users = users.filter(us => us.id === id)
-        res.status(204).send(users)
+        console.log('true dat')
+        users = users.filter(us => us.id !== id)
+        res.status(204).json(users).end()
     } else {
-        res.status(404).send({ message: 'The user with the specified ID does not exist.' })
+        console.log('false dat')
+        res.status(404).json({ message: 'The user with the specified ID does not exist.' })
     }
-
+    // console.log('fallback triggered')
     //fallback error
-    res.status(500).send({ errorMessage: 'The user could not be removed' })
+    // res.status(500).json({ errorMessage: 'The user could not be removed' })
 })
 
 app.put('/api/users/:id', (req, res) => {
     const id = req.params.id
-    if (typeof req.body.name === 'undefined' || typeof req.body.bio === 'undefined') {
-        res.status(400).send({ errorMessage: 'Please provide name and bio for user.' })
+    console.log("entering put")
+    console.log(req.body.name, req.body.bio)
+    if (req.body.name === '' || req.body.bio === '') {
+        res.status(400).json({ message: 'Please provide name and bio for user.' })
     }
     const found = users.find(usr => usr.id === id)
     if (!found) {
-        res.status(404).send({ message: 'The user with the specified ID does not exist' })
+        res.status(404).json({ message: 'The user with the specified ID does not exist' })
     } else {
         Object.assign(found, req.body)
         res.status(201).json(found)
     }
 
     //fallback error
-    res.status(500).send({ errorMessage: 'The user could not be modified' })
+    // res.status(500).json({ message: 'The user could not be modified' })
 })
 
 
