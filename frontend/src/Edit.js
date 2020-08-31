@@ -4,7 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 const Container = styled.form`
-    border: 3px solid black;
+    border: 2px solid black;
     border-radius: 5px;
     font-family: 'Rubik', sans-serif;
     display: flex;

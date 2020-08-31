@@ -31,14 +31,15 @@ app.get('/', (req, res) => {
 app.post('/api/users', (req, res) => {
     if (req.body.name === '' || req.body.bio === '') {
         res.status(400).json({ message: 'Please provide name and bio for user.' })
+    } else {
+        const newUser = {
+            name: req.body.name,
+            bio: req.body.bio,
+            id: randomId()
+        }
+        users.push(newUser)
+        res.status(201).json(newUser)
     }
-    const newUser = {
-        name: req.body.name,
-        bio: req.body.bio,
-        id: randomId()
-    }
-    users.push(newUser)
-    res.status(201).json(newUser)
 })
 
 app.get('/api/users', (req, res) => {
@@ -82,17 +83,15 @@ app.put('/api/users/:id', (req, res) => {
     console.log(req.body.name, req.body.bio)
     if (req.body.name === '' || req.body.bio === '') {
         res.status(400).json({ message: 'Please provide name and bio for user.' })
-    }
-    const found = users.find(usr => usr.id === id)
-    if (!found) {
-        res.status(404).json({ message: 'The user with the specified ID does not exist' })
     } else {
-        Object.assign(found, req.body)
-        res.status(201).json(found)
+        const found = users.find(usr => usr.id === id)
+        if (!found) {
+            res.status(404).json({ message: 'The user with the specified ID does not exist' })
+        } else {
+            Object.assign(found, req.body)
+            res.status(201).json(found)
+        }
     }
-
-    //fallback error
-    // res.status(500).json({ message: 'The user could not be modified' })
 })
 
 
