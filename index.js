@@ -59,17 +59,13 @@ app.get('/api/users/:id', (req, res) => {
 
 //fall back error
 app.delete('/api/users/:id', (req, res) => {
-    console.log('entered delete')
     const id = req.params.id
-    console.log(id)
     const user = users.find(usr => usr.id === id)
     console.log(user)
     if (user) {
-        console.log('true dat')
         users = users.filter(us => us.id !== id)
         res.status(204).json(users).end()
     } else {
-        console.log('false dat')
         res.status(404).json({ message: 'The user with the specified ID does not exist.' })
     }
     // console.log('fallback triggered')
@@ -79,7 +75,6 @@ app.delete('/api/users/:id', (req, res) => {
 
 app.put('/api/users/:id', (req, res) => {
     const id = req.params.id
-    console.log("entering put")
     console.log(req.body.name, req.body.bio)
     if (req.body.name === '' || req.body.bio === '') {
         res.status(400).json({ message: 'Please provide name and bio for user.' })
