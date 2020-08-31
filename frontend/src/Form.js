@@ -7,6 +7,7 @@ const Container = styled.form`
     border: 3px solid black;
     border-radius: 5px;
     background: #fff;
+    font-family: 'Rubik', sans-serif;
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -16,7 +17,7 @@ const Container = styled.form`
     input {
         border: 2px solid #171717;
         background: #fff;
-        color: #fff;
+        color: #333;
         padding: 2% 4%;
         margin: 1%;
         font-size: 1rem;
@@ -55,6 +56,9 @@ function Form(props) {
             .then(res => {
                 console.log(res)
                 setMessage(res.status)
+                setTimeout(() => {
+                    window.location.reload()
+                }, 2000)
             })
             .catch(err => {
                 console.dir(err.response.data.message)
@@ -68,7 +72,7 @@ function Form(props) {
                 <input onChange={handleInputs} value={data.name} type="text" placeholder="name" name="name" />
                 <input onChange={handleInputs} value={data.bio} type="text" placeholder="bio" name="bio" />
                 <button>Add</button>
-                {message && <h3 style={{ color: 'lightblue' }}>{message}</h3>}
+                {message && <h3 style={{ color: '#795548' }}>{message}</h3>}
             </Container>
         </div>
     )

@@ -6,6 +6,7 @@ import styled from 'styled-components'
 const Container = styled.form`
     border: 3px solid black;
     border-radius: 5px;
+    font-family: 'Rubik', sans-serif;
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -15,7 +16,7 @@ const Container = styled.form`
     input {
         border: 2px solid #171717;
         background: #fff;
-        color: #fff;
+        color: #333;
         padding: 2% 4%;
         margin: 1%;
         font-size: 1rem;
@@ -57,6 +58,9 @@ function Edit(props) {
             .then(res => {
                 console.log(res)
                 setMessage(res.status)
+                setTimeout(() => {
+                    window.location.reload()
+                }, 2000)
             })
             .catch(err => {
                 console.dir(err.response.data.message)
@@ -70,7 +74,7 @@ function Edit(props) {
             <input onChange={handleInputs} value={data.bio} type="text" placeholder="bio" name="bio" />
             <input onChange={handleInputs} value={data.id} type="text" placeholder="id" name="id" />
             <button>Edit</button>
-            {message && <h3 style={{ color: "skyblue" }}>{message}</h3>}
+            {message && <h3 style={{ color: "#795548" }}>{message}</h3>}
         </Container>
     )
 }

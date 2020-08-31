@@ -15,7 +15,7 @@ const Container = styled.div`
     h5 {
         background: #5a5a5a;
         color: #fff;
-        width: 20%;
+        width: 45%;
         margin: 6% auto;
         border-radius: 50px;
         padding: 0.5% 1.5%;
