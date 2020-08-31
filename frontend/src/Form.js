@@ -4,8 +4,9 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 const Container = styled.form`
+    border: 3px solid black;
     border-radius: 5px;
-    background: #434443;
+    background: #fff;
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -14,7 +15,7 @@ const Container = styled.form`
 
     input {
         border: 2px solid #171717;
-        background: #171717;
+        background: #fff;
         color: #fff;
         padding: 2% 4%;
         margin: 1%;

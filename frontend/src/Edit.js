@@ -14,7 +14,7 @@ const Container = styled.form`
 
     input {
         border: 2px solid #171717;
-        background: #171717;
+        background: #fff;
         color: #fff;
         padding: 2% 4%;
         margin: 1%;

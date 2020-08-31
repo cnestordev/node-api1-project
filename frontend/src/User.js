@@ -3,10 +3,10 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 const Container = styled.div`
-    background: #191919;
+    border: 2px solid #191919;
     border-radius: 10px;
     font-family: 'Rubik', sans-serif;
-    color: #fff;
+    display: inline-block;
     padding: 1%;
     text-align: center;
     margin: 2%;
@@ -14,7 +14,8 @@ const Container = styled.div`
 
     h5 {
         background: #5a5a5a;
-        width: 5%;
+        color: #fff;
+        width: 20%;
         margin: 6% auto;
         border-radius: 50px;
         padding: 0.5% 1.5%;
@@ -47,7 +48,7 @@ function User({ data }) {
         <Container>
             <h3>{data.name}</h3>
             <h4>{data.bio}</h4>
-            <h5>{data.id}</h5>
+            <h5>id: {data.id}</h5>
             <button onClick={() => deleteUser(data)}>Delete</button>
         </Container>
     )
