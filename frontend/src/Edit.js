@@ -56,14 +56,12 @@ function Edit(props) {
         const id = data.id || 'null'
         axios.put(`http://localhost:8000/api/users/${id}`, data)
             .then(res => {
-                console.log(res)
                 setMessage(res.status)
                 setTimeout(() => {
                     window.location.reload()
                 }, 2000)
             })
             .catch(err => {
-                console.dir(err.response.data.message)
                 setMessage(err.response.data.message)
             })
     }

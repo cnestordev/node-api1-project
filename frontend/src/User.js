@@ -36,11 +36,10 @@ function User({ data }) {
     const deleteUser = user => {
         axios.delete(`http://localhost:8000/api/users/${user.id}`)
             .then(res => {
-                console.log(res)
                 window.location.reload()
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }
 

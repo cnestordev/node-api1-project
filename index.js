@@ -61,7 +61,6 @@ app.get('/api/users/:id', (req, res) => {
 app.delete('/api/users/:id', (req, res) => {
     const id = req.params.id
     const user = users.find(usr => usr.id === id)
-    console.log(user)
     if (user) {
         users = users.filter(us => us.id !== id)
         res.status(204).json(users).end()
@@ -75,7 +74,6 @@ app.delete('/api/users/:id', (req, res) => {
 
 app.put('/api/users/:id', (req, res) => {
     const id = req.params.id
-    console.log(req.body.name, req.body.bio)
     if (req.body.name === '' || req.body.bio === '') {
         res.status(400).json({ message: 'Please provide name and bio for user.' })
     } else {
