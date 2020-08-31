@@ -54,7 +54,6 @@ function Form(props) {
         e.preventDefault()
         axios.post('http://localhost:8000/api/users', data)
             .then(res => {
-                console.log(res)
                 setMessage(res.status)
                 setTimeout(() => {
                     window.location.reload()
