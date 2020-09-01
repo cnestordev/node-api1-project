@@ -1,0 +1,25 @@
+{
+  "name": "node-project",
+  "version": "1.0.0",
+  "description": "first node project web33",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "shortid": "^2.2.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnestordev/node-api1-project.git"
+  },
+  "author": "Nestor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cnestordev/node-api1-project/issues"
+  },
+  "homepage": "https://github.com/cnestordev/node-api1-project#readme"
+}
